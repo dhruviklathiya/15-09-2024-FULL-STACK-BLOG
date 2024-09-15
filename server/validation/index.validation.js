@@ -1,0 +1,1 @@
+module.exports.user_Validation = require("./user.validation")
