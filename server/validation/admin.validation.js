@@ -1,15 +1,15 @@
 const Joi = require("joi")
 
-const ideal_user = Joi.object({
+const ideal_admin = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required(),
-    confirm_password: Joi.string().valid(Joi.ref('password')).messages({ error: "Confirm password did not matched" }).required(),
+    confirm_password: Joi.string().valid(Joi.ref('password')).messages({ error: "Password must be match" }).required(),
     email: Joi.string().required()
 })
 
-const create_user = async (req, res, next) => {
+const create_admin = async (req, res, next) => {
     try {
-        const result = ideal_user.validate(req.body)
+        const result = ideal_admin.validate(req.body)
         if (result.error) {
             throw new Error(result.error.details[0].message)
         }
@@ -23,5 +23,5 @@ const create_user = async (req, res, next) => {
 }
 
 module.exports = {
-    create_user
+    create_admin
 }
